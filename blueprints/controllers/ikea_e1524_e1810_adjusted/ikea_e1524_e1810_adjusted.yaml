@@ -354,10 +354,10 @@ variables:
     zha:
       button_left_short: [press_257_13_0]
       button_left_long: [hold_3329_0]
-      button_left_release: [release, release_1044]
+      button_left_release: [release]
       button_right_short: [press_256_13_0]
       button_right_long: [hold_3328_0]
-      button_right_release: [release, release_884]
+      button_right_release: [release]
       button_up_short: [step_with_on_off_0_43_5, step_with_on_off_StepMode.Up_43_5]
       button_up_long: [move_with_on_off_0_83, move_with_on_off_0_84, move_with_on_off_MoveMode.Up_84]
       button_up_release: [stop, stop_with_on_off]
@@ -595,7 +595,7 @@ actions:
             # if looping is not enabled run the custom action only once
             default: !input action_button_left_long
       - conditions:
-          - '{{ trigger_action | string in button_left_release }}'
+          - '{{ trigger_action.split("_")[0] | string in button_left_release }}'
           # for integrations which need to store the last controller event, need to check the previous button event, stored in the provided input_text
           - '{{ not integration_id in integrations_with_prev_event_storage or last_controller_event | string in button_left_long }}'
         sequence:
@@ -678,7 +678,7 @@ actions:
             # if looping is not enabled run the custom action only once
             default: !input action_button_right_long
       - conditions:
-          - '{{ trigger_action | string in button_right_release }}'
+          - '{{ trigger_action.split("_")[0] | string in button_right_release }}'
           # for integrations which need to store the last controller event, need to check the previous button event, stored in the provided input_text
           - '{{ not integration_id in integrations_with_prev_event_storage or last_controller_event | string in button_right_long }}'
         sequence:
