@@ -380,8 +380,8 @@ variables:
   light_color_mode: !input light_color_mode
   light: !input light
   light_transition: !input light_transition
-  min_temp_kelvin: '{{ state_attr(light, "min_color_temp_kelvin") | int | default(None) }}'
-  max_temp_kelvin: '{{ state_attr(light, "max_color_temp_kelvin") | int | default(None) }}'
+  min_temp_kelvin: '{{ state_attr(light, "min_color_temp_kelvin") | int or 0 }}'
+  max_temp_kelvin: '{{ state_attr(light, "max_color_temp_kelvin") | int or 0 }}'
   min_brightness: !input min_brightness
   max_brightness: !input max_brightness
   brightness_steps_short: !input brightness_steps_short
